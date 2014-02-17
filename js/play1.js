@@ -9,19 +9,15 @@
 
 		console.log('initializing (' + this.width + 'x' + this.height + ')');
 
-		this.camera = new THREE.PerspectiveCamera(75, this.width / this.height, 1, 5000);
-		this.camera.position.z = 1000;
+		this.camera = new THREE.PerspectiveCamera(75, this.width / this.height, 10, 5000);
 		this.camera.updateProjectionMatrix();
 
-		this.controls = new THREE.FirstPersonControls(this.camera);
-		//this.controls.addEventListener( 'change', this.render.bind(this) );
-		this.controls.movementSpeed = 70;
-		this.controls.lookSpeed = 0.05;
-		this.controls.noFly = true;
-		this.controls.lookVertical = false;
+		this.controls = new THREE.PointerLockControls(this.camera);
 
 		this.scene = new THREE.Scene();
 		this.scene.fog = new THREE.FogExp2(0xffffff, 0.00045);
+
+		this.scene.add(this.controls.getObject());
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
 		this.renderer.setSize(this.width, this.height);
@@ -38,7 +34,7 @@
 
 		this.geometry = new THREE.CubeGeometry(200, 200, 200);
 
-		window.addEventListener('mousemove', this.onMouseMove.bind(this), false);
+		//window.addEventListener('mousemove', this.onMouseMove.bind(this), false);
 		window.addEventListener('resize', this.onWindowResize.bind(this), false);
 
 		//
@@ -70,7 +66,7 @@
 
 			var mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
 			mesh.scale.set(0.5, 0.5, 0.5);
-			mesh.position.set(0, 0, 0);
+			mesh.position.set(0, 0,-1000);
 			mesh.updateMatrix();
 			mesh.castShadow = true;
 			mesh.receiveShadow = true;
@@ -154,19 +150,21 @@
 
 		this.renderer.addPrePlugin(depthPassPlugin);
 
+		this.clock = new THREE.Clock();
+
 		this.lockPointer();
 	}
 
-	playground.Play.prototype.animate = function (t) {
+	playground.Play.prototype.animate = function () {
 		requestAnimationFrame(this.animate.bind(this), this.renderer);
-
-		var clock = new THREE.Clock();
-		this.controls.update(clock.getDelta());
-
 		this.render();
 	}
 
 	playground.Play.prototype.render = function () {
+		var dt = this.clock.getDelta();
+
+		this.controls.update(dt);
+
 		this.stats.update();
 //		this.renderer.clear();
 //		this.renderer.render( this.scene, this.camera );
@@ -185,7 +183,7 @@
 
 		// do postprocessing
 
-		this.composer.render(0.1);
+		this.composer.render(dt);
 	}
 
 	playground.Play.prototype.onMouseMove = function (e) {

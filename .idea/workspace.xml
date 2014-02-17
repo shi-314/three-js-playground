@@ -4,11 +4,13 @@
     <list default="true" id="f04e10f6-2970-4251-87b8-d00846789109" name="Default" comment="" />
     <ignored path="three-js-playground.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/index.html" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392661081886" ignored="false" />
-    <file path="/play1.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392663151400" ignored="false" />
+    <file path="/index.html" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392667843184" ignored="false" />
+    <file path="/play1.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392672121453" ignored="false" />
     <file path="$PROJECT_DIR$/test_files/Detector.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392590113072" ignored="false" />
     <file path="$PROJECT_DIR$/test_files/stats.min.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392590113072" ignored="false" />
     <file path="/test.html" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392590735881" ignored="false" />
+    <file path="/FirstPersonControls.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392667548604" ignored="false" />
+    <file path="/PointerLockControls.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392672201655" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,16 +74,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="415" selection-end="415" vertical-scroll-proportion="-7.68">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FirstPersonControls.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controls/FirstPersonControls.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="21" selection-start="1138" selection-end="1144" vertical-scroll-proportion="0.0">
+            <state line="10" column="40" selection-start="340" selection-end="340" vertical-scroll-proportion="-6.4">
               <folding />
             </state>
           </provider>
@@ -90,16 +83,34 @@
       <file leaf-file-name="play1.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/play1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="235" column="54" selection-start="7680" selection-end="7680" vertical-scroll-proportion="0.28190744">
+            <state line="11" column="82" selection-start="352" selection-end="352" vertical-scroll-proportion="0.24684432">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FilmPass.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/postprocessing/FilmPass.js">
+      <file leaf-file-name="PointerLockControls.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controls/PointerLockControls.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="6" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0">
+            <state line="146" column="21" selection-start="2630" selection-end="2630" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrbitControls.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controls/OrbitControls.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="606" column="40" selection-start="13749" selection-end="13749" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FlyControls.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controls/FlyControls.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="178" column="37" selection-start="3930" selection-end="3950" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -117,8 +128,10 @@
       <list>
         <option value="$PROJECT_DIR$/js/Shaders.js" />
         <option value="$PROJECT_DIR$/test.html" />
+        <option value="$PROJECT_DIR$/js/controls/FirstPersonControls.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/play1.js" />
+        <option value="$PROJECT_DIR$/js/controls/PointerLockControls.js" />
       </list>
     </option>
   </component>
@@ -466,19 +479,7 @@
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1383" column="7" selection-start="24447" selection-end="24468" vertical-scroll-proportion="0.33241758" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controls/FlyControls.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="3" vertical-scroll-proportion="-5.1538463">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controls/OrbitControls.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="4" selection-start="1294" selection-end="1294" vertical-scroll-proportion="0.35576922">
+        <state line="1383" column="7" selection-start="24447" selection-end="24468" vertical-scroll-proportion="0.33241758">
           <folding />
         </state>
       </provider>
@@ -486,11 +487,6 @@
     <entry file="file://$PROJECT_DIR$/js/postprocessing/ShaderPass.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="0" selection-start="246" selection-end="246" vertical-scroll-proportion="0.1978022" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/postprocessing/EffectComposer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="4" selection-start="995" selection-end="995" vertical-scroll-proportion="0.33241758" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/shaders/FXAAShader.js">
@@ -512,28 +508,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/postprocessing/FilmPass.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="6" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0">
+        <state line="4" column="6" selection-start="63" selection-end="71" vertical-scroll-proportion="0.022038568">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/postprocessing/EffectComposer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="4" selection-start="1147" selection-end="1147" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/controls/FirstPersonControls.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="21" selection-start="1138" selection-end="1144" vertical-scroll-proportion="0.0">
+        <state line="141" column="0" selection-start="2493" selection-end="2493" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="415" selection-end="415" vertical-scroll-proportion="-7.68">
+        <state line="10" column="40" selection-start="340" selection-end="340" vertical-scroll-proportion="-6.4">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controls/OrbitControls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="606" column="40" selection-start="13749" selection-end="13749" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controls/FlyControls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="178" column="37" selection-start="3930" selection-end="3950" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controls/PointerLockControls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="146" column="21" selection-start="2630" selection-end="2630" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/play1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="235" column="54" selection-start="7680" selection-end="7680" vertical-scroll-proportion="0.28190744">
+        <state line="11" column="82" selection-start="352" selection-end="352" vertical-scroll-proportion="0.24684432">
           <folding />
         </state>
       </provider>
