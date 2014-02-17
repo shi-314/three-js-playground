@@ -62,9 +62,14 @@
 		var loader = new THREE.BinaryLoader(true);
 		this.model = null;
 
+		this.material = null;
+
 		loader.load('/obj/lucy/Lucy100k_bin.js', function (geometry, materials) {
 
+			_that.material = materials[0];
+
 			var mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+
 			mesh.scale.set(0.5, 0.5, 0.5);
 			mesh.position.set(0, 0,-1000);
 			mesh.updateMatrix();
@@ -160,7 +165,8 @@
 		$('#hud').append('<ul id="hudOptions"></ul>');
 		$('#hudOptions')
 			.append('<li><input id="optionSSOA" type="checkbox">SSOA</li>')
-			.append('<li><input id="optionOcclusion" type="checkbox">Occlusion Map</li>');
+			.append('<li><input id="optionOcclusion" type="checkbox">Occlusion Map</li>')
+			.append('<li><input id="optionWireframe" type="checkbox">Wireframe</li>');
 
 		$('#hud').click(function (e) {
 			e.stopPropagation();
@@ -173,6 +179,11 @@
 		$('#optionOcclusion').click(function() {
 			_that.effectSSAO.uniforms.onlyAO.value = 1;
 			_that.effectSSAO.enabled = this.checked;
+		});
+
+		$('#optionWireframe').click(function() {
+			if(_that.material != null)
+				_that.material.wireframe = this.checked;
 		});
 
 		this.useSSOA = false;
@@ -232,8 +243,6 @@
 		this.camera.updateProjectionMatrix();
 
 		this.renderer.setSize(this.width, this.height);
-
-		console.log('resize (' + this.width + 'x' + this.height + ')');
 	}
 
 	playground.Play.prototype.lockPointer = function () {
@@ -242,7 +251,7 @@
 			'webkitPointerLockElement' in document;
 
 		if (!havePointerLock) {
-			console.log('pointer lock available: ' + havePointerLock);
+			console.warn('warning: pointer lock not available');
 			return;
 		}
 
@@ -265,18 +274,12 @@
 	}
 
 	playground.Play.prototype.onPointerLockChanged = function (e) {
-		console.log('pointer lock changed: ');
-
 		var element = document.body;
 
 		if (document.pointerLockElement === element || document.mozPointerLockElement === element || document.webkitPointerLockElement === element) {
-
 			this.controls.enabled = true;
-
 		} else {
-
 			this.controls.enabled = false;
-
 		}
 	}
 
