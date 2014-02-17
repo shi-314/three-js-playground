@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>three.js playground</title>
+	<script src="js/three.js"></script>
+	<script src="js/play1.js"></script>
+	<script src="js/jquery-2.1.0.min.js"></script>
+	<script src="js/controls/OrbitControls.js"></script>
+	<script src="js/loaders/BinaryLoader.js"></script>
+
+	<script src="js/libs/stats.min.js"></script>
+
+	<script src="/js/shaders/CopyShader.js"></script>
+	<script src="/js/shaders/SSAOShader.js"></script>
+
+	<script src="/js/shaders/ColorCorrectionShader.js"></script>
+	<script src="/js/shaders/FXAAShader.js"></script>
+	<script src="/js/shaders/CopyShader.js"></script>
+	<script src="/js/shaders/HorizontalTiltShiftShader.js"></script>
+	<script src="/js/shaders/VerticalTiltShiftShader.js"></script>
+
+	<script src="/js/postprocessing/EffectComposer.js"></script>
+	<script src="/js/postprocessing/RenderPass.js"></script>
+	<script src="/js/postprocessing/MaskPass.js"></script>
+	<script src="/js/postprocessing/ShaderPass.js"></script>
+
+
+
+	<style>
+		body {
+			background-color: #000000;
+			margin: 0;
+			overflow: hidden;
+		}
+	</style>
+
+	<script type="x-shader/x-vertex" id="vertexShader">
+
+		varying vec3 vWorldPosition;
+
+		void main() {
+
+		vec4 worldPosition = modelMatrix * vec4( position, 1.0 );
+		vWorldPosition = worldPosition.xyz;
+
+		gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+		}
+
+	</script>
+
+	<script type="x-shader/x-fragment" id="fragmentShader">
+
+		uniform vec3 topColor;
+		uniform vec3 bottomColor;
+		uniform float offset;
+		uniform float exponent;
+
+		varying vec3 vWorldPosition;
+
+		void main() {
+
+		float h = normalize( vWorldPosition + offset ).y;
+		gl_FragColor = vec4( mix( bottomColor, topColor, max( pow( h, exponent ), 0.0 ) ), 1.0 );
+
+		}
+
+	</script>
+
+	<script>
+		$(document).ready( function () {
+			var play = new playground.Play();
+			play.animate();
+		} );
+	</script>
+</head>
+<body>
+	<div id="container"></div>
+</body>
+</html>
