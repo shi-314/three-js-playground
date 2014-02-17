@@ -109,37 +109,37 @@
 
 		var SCALE = 1.2;
 
-		var effectSSAO = new THREE.ShaderPass(THREE.SSAOShader);
-		var effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
-		var effectScreen = new THREE.ShaderPass(THREE.CopyShader);
+		this.effectSSAO = new THREE.ShaderPass(THREE.SSAOShader);
+		this.effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
+		this.effectScreen = new THREE.ShaderPass(THREE.CopyShader);
 
 		var renderTargetParametersRGB = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBFormat };
 		var renderTargetParametersRGBA = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBAFormat };
 		var depthTarget = new THREE.WebGLRenderTarget(SCALE * this.width, SCALE * this.height, renderTargetParametersRGBA);
 		var colorTarget = new THREE.WebGLRenderTarget(SCALE * this.width, SCALE * this.height, renderTargetParametersRGB);
 
-		effectScreen.renderToScreen = true;
-		effectScreen.enabled = true;
-		effectSSAO.enabled = true;
-		effectFXAA.enabled = true;
+		this.effectScreen.renderToScreen = true;
+		this.effectScreen.enabled = true;
+		this.effectSSAO.enabled = true;
+		this.effectFXAA.enabled = true;
 
 		var composer = new THREE.EffectComposer(this.renderer, colorTarget);
-		composer.addPass(effectSSAO);
-		composer.addPass(effectFXAA);
-		composer.addPass(effectScreen);
+		composer.addPass(this.effectSSAO);
+		composer.addPass(this.effectFXAA);
+		composer.addPass(this.effectScreen);
 		this.composer = composer;
 
-		effectSSAO.uniforms[ 'tDepth' ].value = depthTarget;
-		effectSSAO.uniforms[ 'size' ].value.set(SCALE * this.width, SCALE * this.height);
-		effectSSAO.uniforms[ 'cameraNear' ].value = this.camera.near;
-		effectSSAO.uniforms[ 'cameraFar' ].value = this.camera.far;
-		effectSSAO.uniforms[ 'fogNear' ].value = this.scene.fog.near;
-		effectSSAO.uniforms[ 'fogFar' ].value = this.scene.fog.far;
-		effectSSAO.uniforms[ 'fogEnabled' ].value = 1;
-		effectSSAO.uniforms[ 'aoClamp' ].value = 0.5;
+		this.effectSSAO.uniforms[ 'tDepth' ].value = depthTarget;
+		this.effectSSAO.uniforms[ 'size' ].value.set(SCALE * this.width, SCALE * this.height);
+		this.effectSSAO.uniforms[ 'cameraNear' ].value = this.camera.near;
+		this.effectSSAO.uniforms[ 'cameraFar' ].value = this.camera.far;
+		this.effectSSAO.uniforms[ 'fogNear' ].value = this.scene.fog.near;
+		this.effectSSAO.uniforms[ 'fogFar' ].value = this.scene.fog.far;
+		this.effectSSAO.uniforms[ 'fogEnabled' ].value = 1;
+		this.effectSSAO.uniforms[ 'aoClamp' ].value = 0.5;
 
-		effectSSAO.material.defines = { "RGBA_DEPTH": true, "ONLY_AO_COLOR": "1.0, 0.7, 0.5" };
-		effectFXAA.uniforms[ 'resolution' ].value.set(1 / ( SCALE * this.width ), 1 / ( SCALE * this.height ));
+		this.effectSSAO.material.defines = { "RGBA_DEPTH": true, "ONLY_AO_COLOR": "1.0, 0.7, 0.5" };
+		this.effectFXAA.uniforms[ 'resolution' ].value.set(1 / ( SCALE * this.width ), 1 / ( SCALE * this.height ));
 
 		// depth pass
 
@@ -151,6 +151,31 @@
 		this.renderer.addPrePlugin(depthPassPlugin);
 
 		this.clock = new THREE.Clock();
+
+		//
+		// hud
+		//
+
+		var hud = $(this.container).append('<div id="hud"></div>');
+		$('#hud').append('<ul id="hudOptions"></ul>');
+		$('#hudOptions')
+			.append('<li><input id="optionSSOA" type="checkbox">SSOA</li>')
+			.append('<li><input id="optionOcclusion" type="checkbox">Occlusion Map</li>');
+
+		$('#hud').click(function (e) {
+			e.stopPropagation();
+		});
+
+		$('#optionSSOA').click(function() {
+			_that.useSSOA = this.checked;
+		});
+
+		$('#optionOcclusion').click(function() {
+			_that.effectSSAO.uniforms.onlyAO.value = 1;
+			_that.effectSSAO.enabled = this.checked;
+		});
+
+		this.useSSOA = false;
 
 		this.lockPointer();
 	}
@@ -164,26 +189,28 @@
 		var dt = this.clock.getDelta();
 
 		this.controls.update(dt);
-
 		this.stats.update();
-//		this.renderer.clear();
-//		this.renderer.render( this.scene, this.camera );
 
-		// render color and depth maps
+		if(this.useSSOA) {
+			// render color and depth maps
 
-		this.renderer.autoClear = false;
-		this.renderer.autoUpdateObjects = true;
-		this.renderer.shadowMapEnabled = true;
-		this.depthPassPlugin.enabled = true;
+			this.renderer.autoClear = false;
+			this.renderer.autoUpdateObjects = true;
+			this.renderer.shadowMapEnabled = true;
+			this.depthPassPlugin.enabled = true;
 
-		this.renderer.render(this.scene, this.camera, this.composer.renderTarget2, true);
+			this.renderer.render(this.scene, this.camera, this.composer.renderTarget2, true);
 
-		this.renderer.shadowMapEnabled = false;
-		this.depthPassPlugin.enabled = false;
+			this.renderer.shadowMapEnabled = false;
+			this.depthPassPlugin.enabled = false;
 
-		// do postprocessing
+			// do postprocessing
 
-		this.composer.render(dt);
+			this.composer.render(dt);
+		} else {
+			this.renderer.clear();
+			this.renderer.render( this.scene, this.camera );
+		}
 	}
 
 	playground.Play.prototype.onMouseMove = function (e) {

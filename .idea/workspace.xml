@@ -4,8 +4,8 @@
     <list default="true" id="f04e10f6-2970-4251-87b8-d00846789109" name="Default" comment="" />
     <ignored path="three-js-playground.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/index.html" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392667843184" ignored="false" />
-    <file path="/play1.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392672637562" ignored="false" />
+    <file path="/index.html" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392676975932" ignored="false" />
+    <file path="/play1.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392677942353" ignored="false" />
     <file path="$PROJECT_DIR$/test_files/Detector.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392590113072" ignored="false" />
     <file path="$PROJECT_DIR$/test_files/stats.min.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392590113072" ignored="false" />
     <file path="/test.html" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392590735881" ignored="false" />
@@ -74,7 +74,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="40" selection-start="340" selection-end="340" vertical-scroll-proportion="-6.4">
+            <state line="45" column="9" selection-start="1305" selection-end="1305" vertical-scroll-proportion="-12.8">
               <folding />
             </state>
           </provider>
@@ -83,7 +83,7 @@
       <file leaf-file-name="play1.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/play1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="186" column="0" selection-start="5335" selection-end="5747" vertical-scroll-proportion="0.6633941">
+            <state line="109" column="23" selection-start="3028" selection-end="3028" vertical-scroll-proportion="0.25946704">
               <folding />
             </state>
           </provider>
@@ -129,8 +129,8 @@
         <option value="$PROJECT_DIR$/js/Shaders.js" />
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/js/controls/FirstPersonControls.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/controls/PointerLockControls.js" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/play1.js" />
       </list>
     </option>
@@ -468,7 +468,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/postprocessing/ShaderPass.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="246" selection-end="246" vertical-scroll-proportion="0.1978022" />
+        <state line="9" column="0" selection-start="246" selection-end="246" vertical-scroll-proportion="0.1978022">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/shaders/FXAAShader.js">
@@ -502,13 +504,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="40" selection-start="340" selection-end="340" vertical-scroll-proportion="-6.4">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controls/OrbitControls.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="606" column="40" selection-start="13749" selection-end="13749" vertical-scroll-proportion="0.0">
@@ -537,9 +532,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="9" selection-start="1305" selection-end="1305" vertical-scroll-proportion="-12.8">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/play1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="186" column="0" selection-start="5335" selection-end="5747" vertical-scroll-proportion="0.6633941">
+        <state line="109" column="23" selection-start="3028" selection-end="3028" vertical-scroll-proportion="0.25946704">
           <folding />
         </state>
       </provider>
