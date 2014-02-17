@@ -15,7 +15,7 @@
 		this.controls = new THREE.PointerLockControls(this.camera);
 
 		this.scene = new THREE.Scene();
-		this.scene.fog = new THREE.FogExp2(0xffffff, 0.00045);
+		this.scene.fog = new THREE.FogExp2(0xffffff, 0.0004);
 
 		this.scene.add(this.controls.getObject());
 
@@ -34,7 +34,7 @@
 
 		this.geometry = new THREE.CubeGeometry(200, 200, 200);
 
-		//window.addEventListener('mousemove', this.onMouseMove.bind(this), false);
+		window.addEventListener('mousemove', this.onMouseMove.bind(this), false);
 		window.addEventListener('resize', this.onWindowResize.bind(this), false);
 
 		//
@@ -107,7 +107,7 @@
 
 		// ambient occlusion
 
-		var SCALE = 1.0;
+		var SCALE = 1.2;
 
 		var effectSSAO = new THREE.ShaderPass(THREE.SSAOShader);
 		var effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
@@ -193,7 +193,7 @@
 		var mouseX = ( event.clientX - windowHalfX );
 		var mouseY = ( event.clientY - windowHalfY );
 
-		this.light.position.x = mouseX;
+		this.light.position.x = mouseX * 2;
 		this.light.position.y = 600 - mouseY;
 	}
 

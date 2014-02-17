@@ -5,7 +5,7 @@
     <ignored path="three-js-playground.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/index.html" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392667843184" ignored="false" />
-    <file path="/play1.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392672121453" ignored="false" />
+    <file path="/play1.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392672637562" ignored="false" />
     <file path="$PROJECT_DIR$/test_files/Detector.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392590113072" ignored="false" />
     <file path="$PROJECT_DIR$/test_files/stats.min.js" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392590113072" ignored="false" />
     <file path="/test.html" changelist="f04e10f6-2970-4251-87b8-d00846789109" time="1392590735881" ignored="false" />
@@ -83,7 +83,7 @@
       <file leaf-file-name="play1.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/play1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="82" selection-start="352" selection-end="352" vertical-scroll-proportion="0.24684432">
+            <state line="186" column="0" selection-start="5335" selection-end="5747" vertical-scroll-proportion="0.6633941">
               <folding />
             </state>
           </provider>
@@ -92,7 +92,7 @@
       <file leaf-file-name="PointerLockControls.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controls/PointerLockControls.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="21" selection-start="2630" selection-end="2630" vertical-scroll-proportion="0.0">
+            <state line="28" column="0" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -130,8 +130,8 @@
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/js/controls/FirstPersonControls.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/play1.js" />
         <option value="$PROJECT_DIR$/js/controls/PointerLockControls.js" />
+        <option value="$PROJECT_DIR$/js/play1.js" />
       </list>
     </option>
   </component>
@@ -196,24 +196,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="three-js-playground" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="three-js-playground" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shaders" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -494,13 +476,6 @@
         <state line="94" column="0" selection-start="2983" selection-end="2983" vertical-scroll-proportion="0.73626375" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/three.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14764" column="6" selection-start="293891" selection-end="293891" vertical-scroll-proportion="0.7132867">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/shaders/FilmShader.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="3" vertical-scroll-proportion="-1.4175824" />
@@ -550,14 +525,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/controls/PointerLockControls.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="21" selection-start="2630" selection-end="2630" vertical-scroll-proportion="0.0">
+        <state line="28" column="0" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/three.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16188" column="6" selection-start="323173" selection-end="323180" vertical-scroll-proportion="0.33239833">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/play1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="82" selection-start="352" selection-end="352" vertical-scroll-proportion="0.24684432">
+        <state line="186" column="0" selection-start="5335" selection-end="5747" vertical-scroll-proportion="0.6633941">
           <folding />
         </state>
       </provider>
