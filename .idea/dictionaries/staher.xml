@@ -2,6 +2,12 @@
   <dictionary name="staher">
     <words>
       <w>antialias</w>
+      <w>mozpointerlockchange</w>
+      <w>mozpointerlockerror</w>
+      <w>pointerlockchange</w>
+      <w>pointerlockerror</w>
+      <w>webkitpointerlockchange</w>
+      <w>webkitpointerlockerror</w>
     </words>
   </dictionary>
 </component>

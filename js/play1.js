@@ -3,7 +3,6 @@
 	'use strict';
 
 	playground.Play = function () {
-
 		this.container = document.getElementById('container');
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
@@ -14,29 +13,33 @@
 		this.camera.position.z = 1000;
 		this.camera.updateProjectionMatrix();
 
-		this.controls = new THREE.OrbitControls( this.camera );
-		this.controls.addEventListener( 'change', this.render.bind(this) );
+		this.controls = new THREE.FirstPersonControls(this.camera);
+		//this.controls.addEventListener( 'change', this.render.bind(this) );
+		this.controls.movementSpeed = 70;
+		this.controls.lookSpeed = 0.05;
+		this.controls.noFly = true;
+		this.controls.lookVertical = false;
 
 		this.scene = new THREE.Scene();
-		this.scene.fog = new THREE.FogExp2( 0xffffff, 0.00045 );
+		this.scene.fog = new THREE.FogExp2(0xffffff, 0.00045);
 
-		this.renderer = new THREE.WebGLRenderer( { antialias: false, alpha: false } );
-		this.renderer.setSize( this.width, this.height );
-		this.renderer.setClearColor( this.scene.fog.color, 1 );
+		this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
+		this.renderer.setSize(this.width, this.height);
+		this.renderer.setClearColor(this.scene.fog.color, 1);
 		this.renderer.shadowMapEnabled = true;
 		this.renderer.shadowMapType = THREE.PCFShadowMap;
-		this.container.appendChild( this.renderer.domElement );
+		this.container.appendChild(this.renderer.domElement);
 
 		this.stats = new Stats();
 		this.stats.domElement.style.position = 'absolute';
 		this.stats.domElement.style.top = '0px';
 		this.stats.domElement.style.zIndex = 100;
-		this.container.appendChild( this.stats.domElement );
+		this.container.appendChild(this.stats.domElement);
 
-		this.geometry = new THREE.CubeGeometry( 200, 200, 200 );
+		this.geometry = new THREE.CubeGeometry(200, 200, 200);
 
-		window.addEventListener( 'mousemove', this.onMouseMove.bind(this), false );
-		window.addEventListener( 'resize', this.onWindowResize.bind(this), false );
+		window.addEventListener('mousemove', this.onMouseMove.bind(this), false);
+		window.addEventListener('resize', this.onWindowResize.bind(this), false);
 
 		//
 		// scene
@@ -44,49 +47,49 @@
 
 		// GROUND
 
-		var geometry = new THREE.PlaneGeometry( 100, 100 );
-		var planeMaterial = new THREE.MeshPhongMaterial( { color: 0xffffff } );
+		var geometry = new THREE.PlaneGeometry(100, 100);
+		var planeMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
 		planeMaterial.ambient = planeMaterial.color;
 
-		var ground = new THREE.Mesh( geometry, planeMaterial );
+		var ground = new THREE.Mesh(geometry, planeMaterial);
 
-		ground.rotation.x = - Math.PI / 2;
-		ground.scale.set( 100, 100, 100 );
+		ground.rotation.x = -Math.PI / 2;
+		ground.scale.set(100, 100, 100);
 		ground.position.y = -400;
 
 		ground.castShadow = false;
 		ground.receiveShadow = true;
 
-		this.scene.add( ground );
+		this.scene.add(ground);
 
 		var _that = this;
-		var loader = new THREE.BinaryLoader( true );
+		var loader = new THREE.BinaryLoader(true);
 		this.model = null;
 
-		loader.load( '/obj/lucy/Lucy100k_bin.js', function ( geometry, materials ) {
+		loader.load('/obj/lucy/Lucy100k_bin.js', function (geometry, materials) {
 
-			var mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ));
+			var mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
 			mesh.scale.set(0.5, 0.5, 0.5);
 			mesh.position.set(0, 0, 0);
 			mesh.updateMatrix();
 			mesh.castShadow = true;
 			mesh.receiveShadow = true;
-			_that.scene.add( mesh );
+			_that.scene.add(mesh);
 
 			loader.statusDomElement.style.display = "none";
 
-			console.log( "geometry.vertices: " + geometry.vertices.length );
-			console.log( "geometry.faces: " + geometry.faces.length );
+			console.log("geometry.vertices: " + geometry.vertices.length);
+			console.log("geometry.faces: " + geometry.faces.length);
 
-		} );
+		});
 
 		//
 		// lights
 		//
 
-		var light = new THREE.SpotLight( 0xffffff, 1, 0, Math.PI / 2, 0.5 );
-		light.position.set( 1000, 1500, 1000 );
-		light.target.position.set( 0, 200, 0 );
+		var light = new THREE.SpotLight(0xffffff, 1, 0, Math.PI / 2, 0.5);
+		light.position.set(1000, 1500, 1000);
+		light.target.position.set(0, 200, 0);
 
 		light.castShadow = true;
 
@@ -103,35 +106,35 @@
 
 		this.scene.add(light);
 
-		this.scene.add( new THREE.AmbientLight( 0x202020 ) );
+		this.scene.add(new THREE.AmbientLight(0x202020));
 
 
 		// ambient occlusion
 
 		var SCALE = 1.0;
 
-		var effectSSAO = new THREE.ShaderPass( THREE.SSAOShader );
-		var effectFXAA = new THREE.ShaderPass( THREE.FXAAShader );
-		var effectScreen = new THREE.ShaderPass( THREE.CopyShader );
+		var effectSSAO = new THREE.ShaderPass(THREE.SSAOShader);
+		var effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
+		var effectScreen = new THREE.ShaderPass(THREE.CopyShader);
 
-		var renderTargetParametersRGB  = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBFormat };
+		var renderTargetParametersRGB = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBFormat };
 		var renderTargetParametersRGBA = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBAFormat };
-		var depthTarget = new THREE.WebGLRenderTarget( SCALE * this.width, SCALE * this.height, renderTargetParametersRGBA );
-		var colorTarget = new THREE.WebGLRenderTarget( SCALE * this.width, SCALE * this.height, renderTargetParametersRGB );
+		var depthTarget = new THREE.WebGLRenderTarget(SCALE * this.width, SCALE * this.height, renderTargetParametersRGBA);
+		var colorTarget = new THREE.WebGLRenderTarget(SCALE * this.width, SCALE * this.height, renderTargetParametersRGB);
 
 		effectScreen.renderToScreen = true;
 		effectScreen.enabled = true;
 		effectSSAO.enabled = true;
 		effectFXAA.enabled = true;
 
-		var composer = new THREE.EffectComposer( this.renderer, colorTarget );
-		composer.addPass( effectSSAO );
-		composer.addPass( effectFXAA );
-		composer.addPass( effectScreen );
+		var composer = new THREE.EffectComposer(this.renderer, colorTarget);
+		composer.addPass(effectSSAO);
+		composer.addPass(effectFXAA);
+		composer.addPass(effectScreen);
 		this.composer = composer;
 
 		effectSSAO.uniforms[ 'tDepth' ].value = depthTarget;
-		effectSSAO.uniforms[ 'size' ].value.set( SCALE * this.width, SCALE * this.height );
+		effectSSAO.uniforms[ 'size' ].value.set(SCALE * this.width, SCALE * this.height);
 		effectSSAO.uniforms[ 'cameraNear' ].value = this.camera.near;
 		effectSSAO.uniforms[ 'cameraFar' ].value = this.camera.far;
 		effectSSAO.uniforms[ 'fogNear' ].value = this.scene.fog.near;
@@ -140,7 +143,7 @@
 		effectSSAO.uniforms[ 'aoClamp' ].value = 0.5;
 
 		effectSSAO.material.defines = { "RGBA_DEPTH": true, "ONLY_AO_COLOR": "1.0, 0.7, 0.5" };
-		effectFXAA.uniforms[ 'resolution' ].value.set( 1 / ( SCALE * this.width ), 1 / ( SCALE * this.height ) );
+		effectFXAA.uniforms[ 'resolution' ].value.set(1 / ( SCALE * this.width ), 1 / ( SCALE * this.height ));
 
 		// depth pass
 
@@ -149,12 +152,17 @@
 
 		this.depthPassPlugin = depthPassPlugin;
 
-		this.renderer.addPrePlugin( depthPassPlugin );
+		this.renderer.addPrePlugin(depthPassPlugin);
 
+		this.lockPointer();
 	}
 
-	playground.Play.prototype.animate = function(t) {
-		requestAnimationFrame( this.animate.bind(this), this.renderer );
+	playground.Play.prototype.animate = function (t) {
+		requestAnimationFrame(this.animate.bind(this), this.renderer);
+
+		var clock = new THREE.Clock();
+		this.controls.update(clock.getDelta());
+
 		this.render();
 	}
 
@@ -170,14 +178,14 @@
 		this.renderer.shadowMapEnabled = true;
 		this.depthPassPlugin.enabled = true;
 
-		this.renderer.render( this.scene, this.camera, this.composer.renderTarget2, true );
+		this.renderer.render(this.scene, this.camera, this.composer.renderTarget2, true);
 
 		this.renderer.shadowMapEnabled = false;
 		this.depthPassPlugin.enabled = false;
 
 		// do postprocessing
 
-		this.composer.render( 0.1 );
+		this.composer.render(0.1);
 	}
 
 	playground.Play.prototype.onMouseMove = function (e) {
@@ -188,7 +196,7 @@
 		var mouseY = ( event.clientY - windowHalfY );
 
 		this.light.position.x = mouseX;
-		this.light.position.y = 600-mouseY;
+		this.light.position.y = 600 - mouseY;
 	}
 
 	playground.Play.prototype.onWindowResize = function (e) {
@@ -198,9 +206,57 @@
 		this.camera.aspect = this.width / this.height;
 		this.camera.updateProjectionMatrix();
 
-		this.renderer.setSize( this.width, this.height );
+		this.renderer.setSize(this.width, this.height);
 
 		console.log('resize (' + this.width + 'x' + this.height + ')');
+	}
+
+	playground.Play.prototype.lockPointer = function () {
+		var havePointerLock = 'pointerLockElement' in document ||
+			'mozPointerLockElement' in document ||
+			'webkitPointerLockElement' in document;
+
+		if (!havePointerLock) {
+			console.log('pointer lock available: ' + havePointerLock);
+			return;
+		}
+
+		var element = document.body;
+
+		element.requestPointerLock = element.requestPointerLock || element.mozRequestPointerLock || element.webkitRequestPointerLock;
+
+		document.addEventListener('pointerlockchange', this.onPointerLockChanged.bind(this), false);
+		document.addEventListener('mozpointerlockchange', this.onPointerLockChanged.bind(this), false);
+		document.addEventListener('webkitpointerlockchange', this.onPointerLockChanged.bind(this), false);
+
+		document.addEventListener('pointerlockerror', this.onPointerLockError.bind(this), false);
+		document.addEventListener('mozpointerlockerror', this.onPointerLockError.bind(this), false);
+		document.addEventListener('webkitpointerlockerror', this.onPointerLockError.bind(this), false);
+
+		element.addEventListener('click', function (event) {
+			element.requestPointerLock = element.requestPointerLock || element.mozRequestPointerLock || element.webkitRequestPointerLock;
+			element.requestPointerLock();
+		}, false);
+	}
+
+	playground.Play.prototype.onPointerLockChanged = function (e) {
+		console.log('pointer lock changed: ');
+
+		var element = document.body;
+
+		if (document.pointerLockElement === element || document.mozPointerLockElement === element || document.webkitPointerLockElement === element) {
+
+			this.controls.enabled = true;
+
+		} else {
+
+			this.controls.enabled = false;
+
+		}
+	}
+
+	playground.Play.prototype.onPointerLockError = function (e) {
+		console.log('pointer lock error: ');
 	}
 
 })(window.playground = window.playground || {});
